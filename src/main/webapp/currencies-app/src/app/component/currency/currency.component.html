@@ -1,0 +1,53 @@
+<div class="container">
+  <main>
+  <div class="row">
+    <form [formGroup]="currencyForm">
+      <fieldset [disabled]="isSubmitting">
+        <div class="col-6">
+          <fieldset class="form-group">
+            <input
+              class="form-control"
+              formControlName="currency"
+              type="text"
+              placeholder="Currency code"
+              id = "currency"
+            />
+          </fieldset>
+        </div>
+
+        <div class="col-6">
+          <fieldset class="form-group">
+            <input
+              class="form-control"
+              formControlName="name"
+              type="text"
+              placeholder="Your name nad surname"
+              id ="name"
+            />
+          </fieldset>
+        </div>
+
+        <div class="col-6">
+          <button
+            class="btn btn-lg pull-xs-right btn-primary w-100"
+            type="button"
+            (click)="submitForm()"
+            [disabled]="!currencyForm.valid"
+          >
+            Send currency request
+          </button>
+          <hr *ngIf="currencyResponse || errors" class="my-4">
+
+          <div *ngIf="currencyResponse" class="alert alert-success" role="alert">
+            {{ currencyResponse.value }}
+          </div>
+
+          <app-list-errors [errors]="errors" />
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </main>
+</div>
+
+
